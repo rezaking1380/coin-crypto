@@ -54,10 +54,9 @@ const initialState: RootCoins = {
     },
     exchanges: {
         stats: {
-            '24hVolume': '',
-            total: 0,
+            total: 0
         },
-        exchanges: []
+        coins: []
     }
 }
 
