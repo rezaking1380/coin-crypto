@@ -1,5 +1,5 @@
 import { RootCoins, RootObject, Stats, Coins } from "../../models/Api.model";
-import { GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_GET_COINS } from "./Action";
+import { GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, GET_EXCHANGES, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_EXCHANGES, REQUEST_GET_COINS } from "./Action";
 
 const initialState: RootCoins = {
     status: 'idel',
@@ -51,6 +51,13 @@ const initialState: RootCoins = {
             change: '',
             history: []
         }
+    },
+    exchanges: {
+        stats: {
+            '24hVolume': '',
+            total: 0,
+        },
+        exchanges: []
     }
 }
 
@@ -79,13 +86,23 @@ export const Reducer = (state = initialState, action: any) => {
                 status: 'loading'
             }
         case GET_CRYPTOHISTORY:
-            console.log(action.payload.data)
             return {
                 ...state,
                 coinHistory: action.payload,
                 status: 'success'
             }
         case REQUEST_CRYPTOHISTORY:
+            return {
+                ...state,
+                status: 'loading'
+            }
+        case GET_EXCHANGES:
+            return {
+                ...state,
+                exchanges: action.payload.data,
+                status: 'success'
+            }
+        case REQUEST_EXCHANGES:
             return {
                 ...state,
                 status: 'loading'

@@ -1,0 +1,10 @@
+.exchange-title{
+    margin-bottom: 12px;
+}
+.exchange-col{
+    margin-bottom: 8px;
+}
+.exchange-panel-title{
+    display: flex;
+    align-items: center;
+}

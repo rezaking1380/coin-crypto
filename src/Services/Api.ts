@@ -2,7 +2,7 @@ import { ConsoleSqlOutlined } from "@ant-design/icons"
 import {createApi , fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 import axios from "axios"
-import { GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_GET_COINS } from "./Redux/Action";
+import { GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, GET_EXCHANGES, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_EXCHANGES, REQUEST_GET_COINS } from "./Redux/Action";
 
 
 const ApiHeaders:any = {
@@ -23,11 +23,16 @@ export const getCryptoDetails = (dispatch:any,coinId?:string) => {
     .then((res) => dispatch({type: GET_CRYPTODETAILS,payload: res.data}))
     .catch((error) => console.error(error));
 }
-export const getCryptoHistory = (dispatch:any,coinId?:string,timePeriod:string) => {
-    console.log(timePeriod)
+export const getCryptoHistory = (dispatch:any,coinId?:string,timePeriod?:string) => {
     dispatch({type: REQUEST_CRYPTOHISTORY})
     axios.request({url:`${baseUrl}coin/${coinId}/history?timePeriod=${timePeriod}`,headers:ApiHeaders})
     .then((res) => dispatch({type: GET_CRYPTOHISTORY,payload: res.data}))
+    .catch((error) => console.error(error));
+}
+export const getExchanges = (dispatch:any) => {
+    dispatch({type: REQUEST_EXCHANGES})
+    axios.request({url:`${baseUrl}exchange/-zdvbieRdZ/coins?limit=100`,headers:ApiHeaders})
+    .then((res) => dispatch({type: GET_EXCHANGES,payload: res.data}))
     .catch((error) => console.error(error));
 }
 

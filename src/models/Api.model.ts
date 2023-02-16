@@ -5,7 +5,8 @@ export interface RootCoins {
     status: string;
     coins: Coins;
     coin: CoinDetails;
-    coinHistory: CoinHistory
+    coinHistory: CoinHistory;
+    exchanges: CoinExchange
 }
   
 export interface Coins {
@@ -21,6 +22,28 @@ export interface Stats {
     totalExchanges: number;
     totalMarketCap: string;
     total24hVolume: string;
+  }
+
+  interface CoinExchange {
+    stats: StatsExchange;
+    coins: Exchange[];
+  }
+  
+  interface Exchange {
+    coinrankingUrl: string;
+    rank: number;
+    uuid: string;
+    symbol: string;
+    name: string;
+    iconUrl: string;
+    numberOfMarkets: number;
+    price: string;
+    btcPrice: string;
+    '24hVolume': string;
+  }
+  
+  interface StatsExchange {
+    total: number;
   }
 
   interface CoinHistory {

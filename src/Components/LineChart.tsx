@@ -45,7 +45,7 @@ const LineChart = ({coinHistory, currentPrice ,coinName}:any) => {
      <Row className='chart-header'>
         <Title level={2} className='chart-title'>{coinName} Price Chart</Title>
         <Col className="price-container">
-            <Title level={5} className='price-change'>{coinHistory.data.change} %</Title>
+            <Title level={5} className='price-change'>Change in time : {coinHistory.data.change} %</Title>
             <Title level={5} className='current-price'>Current {coinName} Price: $ {millify(Number(currentPrice))}</Title>
         </Col>
      </Row>

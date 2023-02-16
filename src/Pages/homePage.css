@@ -1,9 +1,14 @@
 .crypto-status{
     padding: 0px 24px;
 }
-.home-heading-cantain{
+.crypto-status .home-heading-container{
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    margin-top: 24px;
+}
+.crypto-status .home-heading-container h3{
+    margin: 15px 0px;
 }
 @media screen and (max-width:425px) {
     .crypto-status .heading{
@@ -11,5 +16,6 @@
     }
     .home-heading-container .home-heading-container-title{
         font-size: 20px;
+        margin: 0px!important;
     }
 }
