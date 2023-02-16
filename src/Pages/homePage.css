@@ -1,0 +1,15 @@
+.crypto-status{
+    padding: 0px 24px;
+}
+.home-heading-cantain{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width:425px) {
+    .crypto-status .heading{
+        font-size: 20px;
+    }
+    .home-heading-container .home-heading-container-title{
+        font-size: 20px;
+    }
+}

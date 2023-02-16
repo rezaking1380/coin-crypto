@@ -1,0 +1,38 @@
+@media screen and (max-width: 425px) {
+    /* .navbar{
+        position: relative;
+    } */
+    .logo-container{
+        width: 100%;
+    }
+    .menu-open{
+    }
+    /* .menu-title{
+        display: none;
+    } */
+    .footer {
+        display: none;
+    }
+    .nav-container-close{
+        background-color: #001529;
+        height: 90px;
+    }
+    .nav-container{
+        display: flex;
+        background-color: #001529;
+        height: 90px;
+    }
+    .main-menu-control-container{
+        display: flex!important;
+    }
+}
+.main-menu-control-container{
+    display: none;
+}
+/* .nav-container-close{
+    background: #001529;
+    min-width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */

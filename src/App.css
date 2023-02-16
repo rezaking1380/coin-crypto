@@ -1,0 +1,68 @@
+.App{
+    display: flex;
+}
+.navbar {
+    position: fixed;
+}
+
+.nav-container .menu-open{
+    padding: 0px 12px;
+}
+.nav-container .menu-open li{
+    font-size: 18px;
+    margin: 12px 0px;
+}
+.nav-container .menu-open .menu-icons{
+    font-size: 24px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-container h2{
+    margin: 24px 8px 24px 12px ;
+}
+
+.logo-site{
+    background-color: white;
+}
+
+.nav-container{
+    background: #001529;
+    min-width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: auto;
+    padding: 24px;
+}
+.footer .footer-title{
+    color: white;
+    text-align: center;
+}
+/* main */
+.main{
+    width: 100%;
+    padding-left: 250px;
+}
+.routes{
+    height: 100vh;
+}
+@media screen and (max-width: 425px){
+    .main{
+        width: 100%;
+        padding: 0;
+        margin-top: 90px;
+    }
+    .navbar{
+        width: 100%;
+    }
+}
