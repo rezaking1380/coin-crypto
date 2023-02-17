@@ -8,6 +8,7 @@ import { RootObject } from "../models/Api.model";
 import { getCryptoDetails, getExchanges } from "../Services/Api";
 import 'react-loading-skeleton/dist/skeleton.css'
 import './exchanges.css'
+import { Link } from "react-router-dom";
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -15,15 +16,8 @@ const { Panel } = Collapse;
 const Exchanges = () => {
   const dispatch = useDispatch()
   const exchanges = useSelector((state: RootObject) => state.coins.exchanges);
-  const description = useSelector((stete: RootObject) => stete.coins.coin.coin.description);
-  const [coinId, setCoinId] = useState('Qwsogvtv82FCd');
   const status = useSelector((state: RootObject) => state.coins.status);
   const exchangeList = exchanges.coins
-  console.log(exchanges)
-  const getCoin = (id:string) => {
-    getCryptoDetails(dispatch,coinId)
-    setCoinId(id)
-  }
   useEffect(() => {
     getExchanges(dispatch)
   }, ['']);
@@ -37,7 +31,8 @@ const Exchanges = () => {
       </Row>
       <Row>
         {exchangeList?.map((exchange) => (
-          <Col span={24} onClick={() => getCoin(exchange.uuid)} className='exchange-col'>
+          <Col span={24} className='exchange-col'>
+            <Link to={`/crypto/${exchange.uuid}`}>
             <Collapse>
             <Panel
             className="panel"
@@ -56,9 +51,9 @@ const Exchanges = () => {
               </Row>
             )}
             >
-              {status === 'loading' ? <Skeleton count={8} height={30} /> : HTMLReactParser(description)}
             </Panel>
             </Collapse>
+            </Link>
           </Col>
         ))}
       </Row>

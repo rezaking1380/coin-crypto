@@ -99,7 +99,7 @@ export const Reducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 exchanges: action.payload.data,
-                status: 'success'
+                status: action.payload.status
             }
         case REQUEST_EXCHANGES:
             return {
