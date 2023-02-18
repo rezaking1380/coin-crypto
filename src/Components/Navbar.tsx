@@ -6,7 +6,9 @@ import {
   BulbOutlined,
   CloseOutlined,
   FundOutlined,
+  GithubFilled,
   HomeOutlined,
+  LinkedinFilled,
   MenuOutlined,
   MoneyCollectOutlined,
 } from "@ant-design/icons";
@@ -77,11 +79,13 @@ const Navbar = () => {
               CoinCrypto <br />
               All rights reserved
             </Typography.Title>
-            <Space>
-              <Link to="/">Home</Link>
-              <Link to="/exchanges">Exchanges</Link>
-              <Link to="/news">News</Link>
+            <Space className="footer-social">
+              <Link to="http://www.linkedin.com/in/reza-nangir/%20http"><LinkedinFilled /></Link>
+              <Link to="https://github.com/rezaking1380"><GithubFilled /></Link>
             </Space>
+            <Typography.Title level={5} className='footer-email'>
+              reza.ngr8@gmail.com
+            </Typography.Title>
           </div>
         </>
       )}
