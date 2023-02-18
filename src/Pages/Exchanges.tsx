@@ -29,7 +29,7 @@ const Exchanges = () => {
         <Col span={6}>Markets</Col>
         <Col span={6}>Price</Col>
       </Row>
-      <Row>
+      <Row className="exchange-container">
         {exchangeList?.map((exchange) => (
           <Col span={24} className='exchange-col'>
             <Link to={`/crypto/${exchange.uuid}`}>
@@ -40,7 +40,7 @@ const Exchanges = () => {
             showArrow={false}
             header={(
               <Row key={exchange.uuid} className='exchange-panel-title'>
-                <Col span={6}>
+                <Col span={6} className='exchange-panel-title-name'>
                   <Text><strong> {exchange.rank}.</strong></Text>
                   <Avatar className="exchange-image" src={exchange.iconUrl} />
                   <Text><strong> {exchange.name}</strong></Text>

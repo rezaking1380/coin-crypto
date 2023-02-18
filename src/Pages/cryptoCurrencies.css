@@ -6,8 +6,13 @@
     padding: 4px!important;
 }
 .crypto-card-main{
-    margin: 24px 12px;
+    margin: 24px 4px;
 }
 .search-crypto {
     margin: 24px auto;
+}
+@media screen and (max-width: 425px) {
+    .crypto-card-container{
+        margin: 0px!important;
+    }
 }

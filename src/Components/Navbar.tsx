@@ -15,7 +15,11 @@ import "./navbar.css";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [screen, setscreen] = useState(1000);
-
+  const clicked = () => {
+    if (screen < 425) {
+      setActiveMenu(false)
+    }
+  }
   useEffect(() => {
     const handelResize = () => setscreen(window.innerWidth);
     window.addEventListener("resize", handelResize);
@@ -51,7 +55,7 @@ const Navbar = () => {
       </div>
       {activeMenu && (
         <>
-          <Menu theme="dark" className="menu-open">
+          <Menu theme="dark" className="menu-open" onClick={clicked}>
             <Menu.Item icon={<HomeOutlined className="menu-icons" />}>
               <Link to="/" className="menu-title">
                 Home
