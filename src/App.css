@@ -56,15 +56,18 @@
 .routes{
     min-height: 100vh;
     margin: 0px 20px;
-    padding-top: 24px;
+    padding-top: 18px;
 }
 @media screen and (max-width: 425px){
     .main{
         width: 100%;
         padding: 0;
-        margin-top: 90px;
+        margin-top: 70px;
     }
     .navbar{
         width: 100%;
+    }
+    .routes{
+        margin: 0px;
     }
 }

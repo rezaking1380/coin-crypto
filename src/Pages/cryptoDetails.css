@@ -36,6 +36,7 @@
     margin-left: 8px;
     font-weight: 600;
     color: rgb(87, 87, 87);
+    max-width: 160px;
 }
 .coin-stats-name-icon{
     font-size: 28px;
@@ -89,7 +90,12 @@
     align-items: center;
 }
 .chart-header{
+    margin-bottom: 24px;
     justify-content: space-between;
+}
+.select-time {
+    min-width: 100px;
+    text-align: center;
 }
 @media screen and (max-width:425px) {
     .coin-desc-link{

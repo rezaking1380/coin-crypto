@@ -4,6 +4,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import icon from "../assets/bitcoin.svg";
 import {
   BulbOutlined,
+  CloseOutlined,
   FundOutlined,
   HomeOutlined,
   MenuOutlined,
@@ -32,16 +33,18 @@ const Navbar = () => {
   return (
     <div className={activeMenu ? "nav-container" : "nav-container-close"}>
       <div className="logo-container">
+        <div className="logo-title-icon">
         <Avatar src={icon} size="large" className="logo-site" />
         <Typography.Title level={2} className="logo">
           <Link to="/">CoinCrypto</Link>
         </Typography.Title>
+        </div>
         <div className="main-menu-control-container">
         <Button
           className="menu-control-container"
           onClick={() => setActiveMenu(!activeMenu)}
         >
-          <MenuOutlined />
+          {activeMenu ? <CloseOutlined /> : <MenuOutlined />}
         </Button>
         </div>
         

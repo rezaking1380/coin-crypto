@@ -1,25 +1,23 @@
 @media screen and (max-width: 425px) {
     .logo-container{
         width: 100%;
-    }
-    .menu-open{
-    }
-
-    .footer {
-        display: none;
+        justify-content: space-around;
+        height: 70px;
     }
     .nav-container-close{
         background-color: #001529;
-        height: 90px;
     }
     .nav-container{
         display: flex;
         background-color: #001529;
-        height: 90px;
     }
     .main-menu-control-container{
         display: flex!important;
     }
+}
+.logo-title-icon{
+    display: flex;
+    align-items: center;
 }
 .main-menu-control-container{
     display: none;
@@ -27,7 +25,18 @@
 .menu-control-container{
     background-color: #001529;
     color: white;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-control-container span{
+    font-size: 18px;
 }
 .navbar{
     z-index: 100;
+}
+.menu-open{
+    display: flex;
+    flex-direction: column;
 }
