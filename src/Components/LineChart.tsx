@@ -1,10 +1,8 @@
 import { Col, Row, Typography } from "antd";
 import millify from "millify";
-import React from "react";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
-import moment from "moment";
 
 const { Title } = Typography;
 

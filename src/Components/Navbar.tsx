@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, Button, Menu, Space, Typography } from "antd";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import icon from "../assets/bitcoin.svg";
 import {
-  BulbOutlined,
   CloseOutlined,
   FundOutlined,
   GithubFilled,
@@ -19,9 +18,9 @@ const Navbar = () => {
   const [screen, setscreen] = useState(1000);
   const clicked = () => {
     if (screen < 425) {
-      setActiveMenu(false)
+      setActiveMenu(false);
     }
-  }
+  };
   useEffect(() => {
     const handelResize = () => setscreen(window.innerWidth);
     window.addEventListener("resize", handelResize);
@@ -40,20 +39,19 @@ const Navbar = () => {
     <div className={activeMenu ? "nav-container" : "nav-container-close"}>
       <div className="logo-container">
         <div className="logo-title-icon">
-        <Avatar src={icon} size="large" className="logo-site" />
-        <Typography.Title level={2} className="logo">
-          <Link to="/">CoinCrypto</Link>
-        </Typography.Title>
+          <Avatar src={icon} size="large" className="logo-site" />
+          <Typography.Title level={2} className="logo">
+            <Link to="/">CoinCrypto</Link>
+          </Typography.Title>
         </div>
         <div className="main-menu-control-container">
-        <Button
-          className="menu-control-container"
-          onClick={() => setActiveMenu(!activeMenu)}
-        >
-          {activeMenu ? <CloseOutlined /> : <MenuOutlined />}
-        </Button>
+          <Button
+            className="menu-control-container"
+            onClick={() => setActiveMenu(!activeMenu)}
+          >
+            {activeMenu ? <CloseOutlined /> : <MenuOutlined />}
+          </Button>
         </div>
-        
       </div>
       {activeMenu && (
         <>
@@ -80,10 +78,14 @@ const Navbar = () => {
               All rights reserved
             </Typography.Title>
             <Space className="footer-social">
-              <Link to="http://www.linkedin.com/in/reza-nangir/%20http"><LinkedinFilled /></Link>
-              <Link to="https://github.com/rezaking1380"><GithubFilled /></Link>
+              <Link to="http://www.linkedin.com/in/reza-nangir/%20http">
+                <LinkedinFilled />
+              </Link>
+              <Link to="https://github.com/rezaking1380">
+                <GithubFilled />
+              </Link>
             </Space>
-            <Typography.Title level={5} className='footer-email'>
+            <Typography.Title level={5} className="footer-email">
               reza.ngr8@gmail.com
             </Typography.Title>
           </div>

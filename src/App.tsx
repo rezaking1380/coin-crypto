@@ -1,14 +1,13 @@
-import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import ErrorPage from "./ErrorPage";
 import HomePage from "./Pages/HomePage";
 import Exchanges from "./Pages/Exchanges";
 import CryptoCurrencies from "./Pages/CryptoCurrencies";
 import CryptoDetails from "./Pages/CryptoDetails";
-import { Layout, Space, Typography } from "antd";
+import { Layout } from "antd";
 import 'antd/dist/reset.css';
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (

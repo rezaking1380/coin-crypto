@@ -1,6 +1,6 @@
 import { Col, Row, Statistic, Typography } from "antd";
 import millify from "millify";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootObject } from "../models/Api.model";

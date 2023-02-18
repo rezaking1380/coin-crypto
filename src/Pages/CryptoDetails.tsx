@@ -13,7 +13,7 @@ import {
 import { Col, Row, Select, Typography } from "antd";
 import HTMLReactParser from "html-react-parser";
 import millify from "millify";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import LineChart from "../Components/LineChart";
@@ -28,7 +28,9 @@ const CryptoDetails = () => {
   const dispatch = useDispatch();
   const { coinId } = useParams();
   const coin = useSelector((stete: RootObject) => stete.coins.coin.coin);
-  const coinHistory = useSelector((stete: RootObject) => stete.coins.coinHistory);
+  const coinHistory = useSelector(
+    (stete: RootObject) => stete.coins.coinHistory
+  );
   const [timePeriod, setTimePeriod] = useState("7d");
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
   if (coin === undefined) {
@@ -86,8 +88,8 @@ const CryptoDetails = () => {
   ];
   useEffect(() => {
     getCryptoDetails(dispatch, coinId);
-    getCryptoHistory(dispatch,coinId,timePeriod)
-  }, [coinId,timePeriod]);
+    getCryptoHistory(dispatch, coinId, timePeriod);
+  }, [coinId, timePeriod]);
   return (
     <div className="main-coin">
       <Col className="coin-details-container">
@@ -101,18 +103,22 @@ const CryptoDetails = () => {
           </p>
         </Col>
         <div className="main-select-time">
-        <Select
-          defaultValue="7d"
-          className="select-time"
-          placeholder="Select Time"
-          onChange={(value) => setTimePeriod(value)}
-        >
-          {time.map((date) => (
-            <Option key={date}>{date}</Option>
-          ))}
-        </Select>
+          <Select
+            defaultValue="7d"
+            className="select-time"
+            placeholder="Select Time"
+            onChange={(value) => setTimePeriod(value)}
+          >
+            {time.map((date) => (
+              <Option key={date}>{date}</Option>
+            ))}
+          </Select>
         </div>
-        <LineChart coinHistory={coinHistory} currentPrice={coin.price} coinName={coin.name} />
+        <LineChart
+          coinHistory={coinHistory}
+          currentPrice={coin.price}
+          coinName={coin.name}
+        />
         <Col className="stats-container">
           <Col className="coin-value">
             <Col className="coin-value-heading">
