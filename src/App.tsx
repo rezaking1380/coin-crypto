@@ -6,8 +6,7 @@ import Exchanges from "./Pages/Exchanges";
 import CryptoCurrencies from "./Pages/CryptoCurrencies";
 import CryptoDetails from "./Pages/CryptoDetails";
 import { Layout } from "antd";
-import 'antd/dist/reset.css';
-import NotFound from "./Pages/NotFound";
+import "antd/dist/reset.css";
 
 function App() {
   return (

@@ -54,7 +54,8 @@
     width: 50%;
 }
 .coin-details-heading p{
-    font-weight: 400;
+    font-weight: 450;
+    font-size: 18px;
 }
 .coin-links{
     display: flex;

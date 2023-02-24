@@ -39,7 +39,7 @@ const Exchanges = () => {
                     <Row key={exchange.uuid} className="exchange-panel-title">
                       <Col span={6} className="exchange-panel-title-name">
                         <Text>
-                          <strong> {exchange.rank}.</strong>
+                          <strong> {exchange.rank}. </strong>
                         </Text>
                         <Avatar
                           className="exchange-image"
