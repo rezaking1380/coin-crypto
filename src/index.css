@@ -1,2 +1,27 @@
+:root {
+  --cc-bg: #0b0e11;
+  --cc-gold: #f0b90b;
+  --cc-up: #2ebd85;
+  --cc-down: #f6465d;
+  --cc-text: #e8eaf0;
+  --cc-text-secondary: #9aa4b2;
+  --cc-border: rgba(255, 255, 255, 0.08);
+  --cc-radius: 10px;
+}
 
+body {
+  background: var(--cc-bg);
+  color: var(--cc-text);
+  margin: 0;
+}
 
+a {
+  color: inherit;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--cc-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

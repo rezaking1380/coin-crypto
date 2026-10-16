@@ -1,4 +1,4 @@
-import { Alert, Card, Col, Input, Row } from "antd";
+import { Alert, Card, Col, Empty, Input, Row, Skeleton } from "antd";
 import millify from "millify";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,18 +14,21 @@ const CryptoCurrencies = ({simplified}:any) => {
   const [cryptos, setCryptos] = useState(cryptoList);
   const status = useSelector((state:RootObject) => state.coins.status)
   const [search, setSearch] = useState('');
+
   // Fetch the full list when opened directly (e.g. deep link), not only via Home
   useEffect(() => {
     if (!simplified && cryptoList.length < count && status !== "loading") {
       getCoins(dispatch, count);
     }
-  }, [cryptoList, count, simplified, status]);
+  }, [cryptoList, count, simplified, status, dispatch]);
+
   useEffect(() => {
     window.scroll(0,0)
     const filterData = cryptoList.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()))
     setCryptos(filterData)
   }, [cryptoList,search]);
-  
+
+  const loading = status === "loading" && cryptos.length === 0;
 
   return (
   <div className="crypto-card-main">
@@ -40,26 +43,38 @@ const CryptoCurrencies = ({simplified}:any) => {
     )}
     {count === 100 && (
       <div className="search-crypto">
-      <Input placeholder="Search CryptoCurrencies" onChange={(e) => setSearch(e.target.value)} />
+      <Input placeholder="Search CryptoCurrencies" aria-label="Search cryptocurrencies" onChange={(e) => setSearch(e.target.value)} />
       </div>
     )}
-    <Row gutter={[32,32]} className='crypto-card-container'>
+    {loading ? (
+      <Row gutter={[16,16]} className='crypto-card-container'>
+        {Array.from({ length: count }).map((_, i) => (
+          <Col xs={24} sm={12} lg={6} className="crypto-card" key={i}>
+            <Card><Skeleton active paragraph={{ rows: 2 }} /></Card>
+          </Col>
+        ))}
+      </Row>
+    ) : cryptos.length === 0 ? (
+      <Empty description={search ? "No coins match your search" : "No cryptocurrencies found"} />
+    ) : (
+    <Row gutter={[16,16]} className='crypto-card-container'>
       {cryptos.slice(0,count).map((crypto) => (
         <Col xs={24} sm={12} lg={6} className="crypto-card" key={crypto.uuid}>
-          <Link to={`/crypto/${crypto.uuid}`}>
-            <Card title={`${crypto.rank} . ${crypto.name}`}
-            extra={<img className="crypto-image" src={crypto.iconUrl} alt={crypto.name} />}
+          <Link to={`/crypto/${crypto.uuid}`} aria-label={`${crypto.name} details`}>
+            <Card title={`${crypto.rank}. ${crypto.name}`}
+            extra={<img className="crypto-image" src={crypto.iconUrl} alt={`${crypto.name} icon`} />}
             hoverable
             >
-              <p>Price : {millify(Number(crypto.price))}</p>
-              <p>Market Cap : {millify(Number(crypto.marketCap))}</p>
-              <p>Daily Change : {millify(Number(crypto.change))}</p>
+              <p>Price: <strong>{millify(Number(crypto.price))}</strong></p>
+              <p>Market Cap: {millify(Number(crypto.marketCap))}</p>
+              <p>Daily Change: {millify(Number(crypto.change))}%</p>
             </Card>
           </Link>
         </Col>
       ))
       }
     </Row>
+    )}
     </div>
     )
 };

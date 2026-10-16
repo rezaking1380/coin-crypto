@@ -1,19 +1,10 @@
-.exchange-title{
-    margin: 0px 8px 12px 8px;
-    text-align: center;
-    font-weight: 500;
+.exchanges-page{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 18px;
 }
-.exchange-col{
-    margin-bottom: 8px;
-}
-.exchange-panel-title{
-    display: flex;
+.exchange-cell{
+    display: inline-flex;
     align-items: center;
-}
-.exchange-container{
-    padding: 0px 4px;
-    text-align: center;
-}
-.exchange-panel-title-name{
-    text-align: left;
+    gap: 10px;
 }

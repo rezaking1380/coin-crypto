@@ -1,30 +1,65 @@
-import { Alert, Avatar, Col, Collapse, Row, Typography } from "antd";
+import { Alert, Avatar, Table, Typography } from "antd";
 import millify from "millify";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootObject } from "../models/Api.model";
 import { getExchanges } from "../Services/Api";
-import "react-loading-skeleton/dist/skeleton.css";
 import "./exchanges.css";
-
-const { Text } = Typography;
-const { Panel } = Collapse;
 
 const formatCompact = (value: unknown) => {
   const num = Number(value);
   return Number.isFinite(num) ? millify(num) : "\u2014";
 };
 
+const columns: any[] = [
+  {
+    title: "#",
+    dataIndex: "rank",
+    key: "rank",
+    width: 70,
+    render: (rank: number) => <Typography.Text strong>{rank}</Typography.Text>,
+    sorter: (a: any, b: any) => a.rank - b.rank,
+  },
+  {
+    title: "Exchange",
+    dataIndex: "name",
+    key: "name",
+    render: (_: unknown, exchange: any) => (
+      <span className="exchange-cell">
+        <Avatar src={exchange.iconUrl} alt={`${exchange.name} icon`} size="small" />
+        <Typography.Text strong>{exchange.name}</Typography.Text>
+      </span>
+    ),
+  },
+  {
+    title: "24h Volume",
+    dataIndex: "24hVolume",
+    key: "volume",
+    align: "right",
+    render: (value: unknown) => formatCompact(value),
+    sorter: (a: any, b: any) => Number(a["24hVolume"]) - Number(b["24hVolume"]),
+  },
+  {
+    title: "Markets",
+    dataIndex: "numberOfMarkets",
+    key: "markets",
+    align: "right",
+    render: (value: unknown) => formatCompact(value),
+    sorter: (a: any, b: any) => Number(a.numberOfMarkets) - Number(b.numberOfMarkets),
+  },
+];
+
 const Exchanges = () => {
   const dispatch = useDispatch();
   const exchanges = useSelector((state: RootObject) => state.coins.exchanges);
-  const exchangeList = exchanges.coins;
   const status = useSelector((state: RootObject) => state.coins.status);
   useEffect(() => {
     getExchanges(dispatch);
-  }, []);
+  }, [dispatch]);
+
   return (
-    <div>
+    <div className="exchanges-page">
+      <Typography.Title level={2}>Exchanges</Typography.Title>
       {status === "error" && (
         <Alert
           message="Could not load exchanges"
@@ -34,43 +69,14 @@ const Exchanges = () => {
           style={{ marginBottom: 16 }}
         />
       )}
-      <Row className="exchange-title">
-        <Col span={8}>Exchanges</Col>
-        <Col span={8}>24h Trade Volume</Col>
-        <Col span={8}>Markets</Col>
-      </Row>
-      <Row className="exchange-container">
-        {exchangeList?.map((exchange) => (
-          <Col span={24} className="exchange-col" key={exchange.uuid}>
-            <Collapse>
-              <Panel
-                className="panel"
-                key={exchange.uuid}
-                showArrow={false}
-                header={
-                  <Row className="exchange-panel-title">
-                    <Col span={8} className="exchange-panel-title-name">
-                      <Text>
-                        <strong>{exchange.rank}.</strong>
-                      </Text>
-                      <Avatar
-                        className="exchange-image"
-                        src={exchange.iconUrl}
-                        alt={exchange.name}
-                      />
-                      <Text>
-                        <strong>{exchange.name}</strong>
-                      </Text>
-                    </Col>
-                    <Col span={8}>{formatCompact(exchange["24hVolume"])}</Col>
-                    <Col span={8}>{formatCompact(exchange.numberOfMarkets)}</Col>
-                  </Row>
-                }
-              ></Panel>
-            </Collapse>
-          </Col>
-        ))}
-      </Row>
+      <Table
+        columns={columns}
+        dataSource={exchanges.coins}
+        rowKey="uuid"
+        loading={status === "loading"}
+        pagination={{ pageSize: 15, showSizeChanger: false }}
+        scroll={{ x: 480 }}
+      />
     </div>
   );
 };

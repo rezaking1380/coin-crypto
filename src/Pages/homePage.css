@@ -1,21 +1,53 @@
 .crypto-status{
     padding: 0px 18px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.crypto-status .heading{
+    margin-bottom: 16px;
+}
+.stat-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+@media (min-width: 576px){
+    .stat-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 992px){
+    .stat-grid{ grid-template-columns: repeat(5, 1fr); }
+}
+.stat-card{
+    height: 100%;
+}
+.stat-card .ant-statistic-title{
+    color: var(--cc-text-secondary);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+.stat-card .ant-statistic-content{
+    font-size: 20px;
+    font-weight: 700;
+}
+.stat-icon{
+    color: var(--cc-gold);
+    margin-right: 4px;
 }
 .crypto-status .home-heading-container{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 24px;
+    margin-top: 28px;
+    margin-bottom: 4px;
 }
-.crypto-status .home-heading-container h3{
-    margin: 15px 0px;
+.home-heading-container .home-heading-container-title{
+    margin: 0 !important;
 }
 @media screen and (max-width:425px) {
     .crypto-status .heading{
         font-size: 18px;
     }
-    .home-heading-container .home-heading-container-title{
-        font-size: 18px;
-        margin: 0px!important;
+    .stat-card .ant-statistic-content{
+        font-size: 16px;
     }
 }

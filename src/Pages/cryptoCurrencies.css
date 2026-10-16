@@ -5,11 +5,26 @@
 .crypto-card{
     padding: 4px!important;
 }
+.crypto-card .ant-card{
+    height: 100%;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.crypto-card .ant-card:hover{
+    transform: translateY(-2px);
+}
+.crypto-card p{
+    margin-bottom: 6px;
+    color: var(--cc-text-secondary);
+}
+.crypto-card p strong{
+    color: var(--cc-text);
+}
 .crypto-card-main{
     margin: 24px 4px;
 }
 .search-crypto {
-    margin: 24px auto;
+    margin: 0 auto 24px auto;
+    max-width: 420px;
 }
 @media screen and (max-width: 425px) {
     .crypto-card-container{

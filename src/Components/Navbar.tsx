@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Avatar, Button, Menu, Space, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import icon from "../assets/bitcoin.svg";
 import {
   CloseOutlined,
@@ -16,6 +16,12 @@ import "./navbar.css";
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [screen, setscreen] = useState(1000);
+  const { pathname } = useLocation();
+  const selectedKey = pathname.startsWith("/crypto") || pathname.startsWith("/cryptocurrencies")
+    ? "cryptocurrencies"
+    : pathname.startsWith("/exchanges")
+    ? "exchanges"
+    : "home";
   const clicked = () => {
     if (screen < 425) {
       setActiveMenu(false);
@@ -39,7 +45,7 @@ const Navbar = () => {
     <div className={activeMenu ? "nav-container" : "nav-container-close"}>
       <div className="logo-container">
         <div className="logo-title-icon">
-          <Avatar src={icon} size="large" className="logo-site" />
+          <Avatar src={icon} size="large" className="logo-site" alt="CoinCrypto logo" />
           <Typography.Title level={2} className="logo">
             <Link to="/">CoinCrypto</Link>
           </Typography.Title>
@@ -47,6 +53,7 @@ const Navbar = () => {
         <div className="main-menu-control-container">
           <Button
             className="menu-control-container"
+            aria-label="Toggle navigation menu"
             onClick={() => setActiveMenu(!activeMenu)}
           >
             {activeMenu ? <CloseOutlined /> : <MenuOutlined />}
@@ -55,18 +62,18 @@ const Navbar = () => {
       </div>
       {activeMenu && (
         <>
-          <Menu theme="dark" className="menu-open" onClick={clicked}>
-            <Menu.Item icon={<HomeOutlined className="menu-icons" />}>
+          <Menu theme="dark" className="menu-open" onClick={clicked} selectedKeys={[selectedKey]}>
+            <Menu.Item key="home" icon={<HomeOutlined className="menu-icons" />}>
               <Link to="/" className="menu-title">
                 Home
               </Link>
             </Menu.Item>
-            <Menu.Item icon={<FundOutlined className="menu-icons" />}>
+            <Menu.Item key="cryptocurrencies" icon={<FundOutlined className="menu-icons" />}>
               <Link to="/cryptocurrencies" className="menu-title">
                 CryptoCurrencies
               </Link>
             </Menu.Item>
-            <Menu.Item icon={<MoneyCollectOutlined className="menu-icons" />}>
+            <Menu.Item key="exchanges" icon={<MoneyCollectOutlined className="menu-icons" />}>
               <Link to="/exchanges" className="menu-title">
                 Exchanges
               </Link>
@@ -78,12 +85,22 @@ const Navbar = () => {
               All rights reserved
             </Typography.Title>
             <Space className="footer-social">
-              <Link to="https://www.linkedin.com/in/reza-nangir/">
+              <a
+                href="https://www.linkedin.com/in/reza-nangir/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Reza Nangir on LinkedIn"
+              >
                 <LinkedinFilled />
-              </Link>
-              <Link to="https://github.com/rezaking1380">
+              </a>
+              <a
+                href="https://github.com/rezaking1380"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Reza Nangir on GitHub"
+              >
                 <GithubFilled />
-              </Link>
+              </a>
             </Space>
             <Typography.Title level={5} className="footer-email">
               reza.ngr8@gmail.com

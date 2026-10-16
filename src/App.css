@@ -57,6 +57,7 @@
     min-height: 100vh;
     margin: 0px 20px;
     padding-top: 18px;
+    padding-bottom: 32px;
 }
 @media screen and (max-width: 425px){
     .main{
@@ -69,5 +70,7 @@
     }
     .routes{
         margin: 0px;
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }
