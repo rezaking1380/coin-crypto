@@ -1,8 +1,9 @@
 import { RootCoins, RootObject, Stats, Coins } from "../../models/Api.model";
-import { GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, GET_EXCHANGES, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_EXCHANGES, REQUEST_GET_COINS } from "./Action";
+import { API_ERROR, GET_COINS, GET_CRYPTODETAILS, GET_CRYPTOHISTORY, GET_EXCHANGES, REQUEST_CRYPTODETAILS, REQUEST_CRYPTOHISTORY, REQUEST_EXCHANGES, REQUEST_GET_COINS } from "./Action";
 
 const initialState: RootCoins = {
-    status: 'idel',
+    status: 'idle',
+    error: '',
     coins: {
         stats: {
             total: 0,
@@ -75,8 +76,9 @@ export const Reducer = (state = initialState, action: any) => {
             }
         case GET_CRYPTODETAILS:
             return {
+                // API responds with { status, data: { coin } } — unwrap to { coin }
                 ...state,
-                coin: action.payload.data,
+                coin: action.payload.data.data,
                 status: 'success'
             }
         case REQUEST_CRYPTODETAILS:
@@ -97,14 +99,24 @@ export const Reducer = (state = initialState, action: any) => {
             }
         case GET_EXCHANGES:
             return {
+                // /exchanges responds with { status, data: { stats, exchanges } }
                 ...state,
-                exchanges: action.payload.data,
-                status: action.payload.status
+                exchanges: {
+                    stats: action.payload.data?.stats ?? { total: 0 },
+                    coins: action.payload.data?.exchanges ?? [],
+                },
+                status: 'success'
             }
         case REQUEST_EXCHANGES:
             return {
                 ...state,
                 status: 'loading'
+            }
+        case API_ERROR:
+            return {
+                ...state,
+                status: 'error',
+                error: action.payload
             }
         default:
             return state

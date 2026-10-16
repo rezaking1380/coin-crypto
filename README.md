@@ -25,10 +25,11 @@ src/
 
 ```bash
 npm install
+cp .env.example .env   # add your RapidAPI key
 npm run dev
 ```
 
-The app reads market data from the CoinRanking API via RapidAPI; the API key is configured in `src/Services/Api.ts`.
+The app reads market data from the CoinRanking API via RapidAPI. Create a `.env` file (see `.env.example`) with your `VITE_RAPIDAPI_KEY` — the key is never committed to the repo.
 
 ## Scripts
 

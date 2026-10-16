@@ -3,6 +3,7 @@ export interface RootObject {
 }
 export interface RootCoins {
     status: string;
+    error: string;
     coins: Coins;
     coin: CoinDetails;
     coinHistory: CoinHistory;

@@ -1,4 +1,4 @@
-import { Col, Row, Statistic, Typography } from "antd";
+import { Alert, Col, Row, Statistic, Typography } from "antd";
 import millify from "millify";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const stats = useSelector((state: RootObject) => state.coins.coins.stats);
   const status = useSelector((state: RootObject) => state.coins.status);
+  const error = useSelector((state: RootObject) => state.coins.error);
   const [count, setcount] = useState(10);
   const clicked = () => setcount(100)
   useEffect(() => {
@@ -19,6 +20,15 @@ const HomePage = () => {
   }, [count]);
   return (
     <div className="crypto-status">
+      {status === "error" && (
+        <Alert
+          message="Could not load market data"
+          description={error || "Please check your connection and try again."}
+          type="error"
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
+      )}
       <Typography.Title level={2} className="heading">
         Global Crypto Status
       </Typography.Title>

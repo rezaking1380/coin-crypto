@@ -78,7 +78,7 @@ const Navbar = () => {
               All rights reserved
             </Typography.Title>
             <Space className="footer-social">
-              <Link to="http://www.linkedin.com/in/reza-nangir/%20http">
+              <Link to="https://www.linkedin.com/in/reza-nangir/">
                 <LinkedinFilled />
               </Link>
               <Link to="https://github.com/rezaking1380">
